@@ -374,6 +374,16 @@ mappings = {
         }
     },
 
+    "closed": {
+        "device_type": "binary_sensor",
+        "object_suffix": "contact",
+        "config": {
+            "force_update": "true",
+            "payload_on": "0",
+            "payload_off": "1"
+        }
+    },
+
     "alarm": {
         "device_type": "binary_sensor",
         "object_suffix": "alarm",
