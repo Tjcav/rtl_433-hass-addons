@@ -1,4 +1,4 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.19
 FROM $BUILD_FROM as builder
 MAINTAINER pbkhrv@pm.me
 
@@ -13,10 +13,12 @@ RUN apk add --no-cache --virtual .buildDeps \
     git
 
 WORKDIR /build
+
 RUN git clone https://github.com/merbanan/rtl_433
 WORKDIR ./rtl_433
 
-ARG rtl433GitRevision=21.12
+# Build a specific commit or tag.
+ARG rtl433GitRevision=23.11
 RUN git checkout ${rtl433GitRevision}
 WORKDIR ./build
 RUN cmake ..
@@ -25,14 +27,14 @@ RUN make -j 4
 WORKDIR /build/root
 WORKDIR /build/rtl_433/build
 RUN make DESTDIR=/build/root/ install
-RUN ls -lah /build/root
 
 FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
 RUN apk add --no-cache libusb \
-    librtlsdr
+    librtlsdr \
+    sed
 WORKDIR /root
 COPY --from=builder /build/root/ /
 

@@ -48,9 +48,11 @@ For a "zero configuration" setup, install the [Mosquitto broker](https://github.
 
 For more advanced configuration, take a look at the example config file included in the rtl_433 source code: [rtl_433.example.conf](https://github.com/merbanan/rtl_433/blob/master/conf/rtl_433.example.conf)
 
+Note that since the configuration file has bash variables in it, **dollar signs and other special shell characters need to be escaped**. For example, to use the literal string `$GPRMC` in the configuration file, use `\$GPRMC`.
+
 The `retain` option controls if MQTT's `retain` flag is enabled or disabled by default. It can be overridden on a per-radio basis by setting `retain` to `true` or `false` in the `output` setting.
 
-Assuming that you intend to get the rtl_433 data into Home Assistant, the absolute minimum that you need to specify in the config file is the [MQTT connection and authentication information](https://triq.org/rtl_433/OPERATION.html#mqtt-output):
+When configuring manually, assuming that you intend to get the rtl_433 data into Home Assistant, the absolute minimum that you need to specify in the config file is the [MQTT connection and authentication information](https://triq.org/rtl_433/OPERATION.html#mqtt-output):
 
 ```
 output      mqtt://HOST:PORT,user=XXXX,pass=YYYYYYY
@@ -68,11 +70,10 @@ You might also want to narrow down the list of protocols that rtl_433 should try
 protocol    40
 ```
 
-Last but not least, if you decide to use the MQTT auto discovery script or add-on, its documentation recommends converting units in all of the data coming out of rtl_433 into SI, and using the "newmodel" meta data format to ensure the sensor data gets into HA as accurately as possible:
+Last but not least, if you decide to use the MQTT auto discovery script or add-on, its documentation recommends converting units in all of the data coming out of rtl_433 into SI:
 
 ```
 convert     si
-report_meta newmodel
 ```
 
 Assuming you have only one USB dongle attached and rtl_433 is able to automatically find it, we arrive at a minimal rtl_433 config file that looks like this:
@@ -84,7 +85,6 @@ frequency   433.92M
 protocol    40
 
 convert     si
-report_meta newmodel
 ```
 
 Please check [the official rtl_433 documentation](https://triq.org/rtl_433) and [config file examples](https://github.com/merbanan/rtl_433/tree/master/conf) for more information.
