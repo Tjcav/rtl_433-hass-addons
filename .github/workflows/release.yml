@@ -11,7 +11,7 @@ on:
   schedule:
     # A random daily time, as Actions doesn't have a suggestion for running
     # daily without causing job spikes.
-    - cron:  '16 8 * * *'
+    #- cron:  '16 8 * * *'
 
 env:
   REGISTRY: ghcr.io
