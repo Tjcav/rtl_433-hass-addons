@@ -68,7 +68,7 @@ jobs:
         args: |
           --all \
           --docker-hub ghcr.io \
-          --image pbkhrv/rtl_433-hass-addons-rtl_433_mqtt_autodiscovery-{arch} \
+          --image tjcav/rtl_433-hass-addons-rtl_433_mqtt_autodiscovery-{arch} \
           --version $GITHUB_REF_SLUG \
           --no-latest \
           --target rtl_433_mqtt_autodiscovery
