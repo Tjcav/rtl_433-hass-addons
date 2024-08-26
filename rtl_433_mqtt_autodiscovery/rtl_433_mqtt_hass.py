@@ -390,12 +390,13 @@ mappings = {
 
     "closed": {
         "device_type": "binary_sensor",
-        "object_suffix": "opening",
+        "object_suffix": "closed",
         "config": {
             "device_class": "opening",
             "force_update": "true",
             "payload_on": "0",
-            "payload_off": "1"
+            "payload_off": "1",
+            "entity_category": "diagnostic"
         }
     },
 
@@ -620,14 +621,17 @@ def bridge_event_to_hass(mqttc, topicprefix, data):
 
     # detect known attributes
     for key in data.keys():
+        print(key)
         if key in mappings:
             # topic = "/".join([topicprefix,"devices",model,instance,key])
             topic = "/".join([topicprefix,"devices",instance,key])
             if publish_config(mqttc, topic, model, instance, mappings[key]):
                 published_keys.append(key)
+            print("added")
         else:
             if key not in SKIP_KEYS:
                 skipped_keys.append(key)
+            print("skipped")
 
     if published_keys and not args.quiet:
         print("Published %s: %s" % (instance, ", ".join(published_keys)))
