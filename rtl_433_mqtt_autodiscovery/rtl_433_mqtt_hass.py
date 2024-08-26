@@ -376,6 +376,18 @@ mappings = {
         }
     },
 
+    "contact_open": {
+        "device_type": "binary_sensor",
+        "object_suffix": "contact_open",
+        "config": {
+            "device_class": "safety",
+            "force_update": "true",
+            "payload_on": "1",
+            "payload_off": "0",
+            "entity_category": "diagnostic"
+        }
+    },
+
     "closed": {
         "device_type": "binary_sensor",
         "object_suffix": "opening",
@@ -519,12 +531,14 @@ def mqtt_message(client, userdata, msg):
     try:
         # Decode JSON payload
         data = json.loads(msg.payload.decode())
+        print(data)
 
     except json.decoder.JSONDecodeError:
         print("JSON decode error: " + msg.payload.decode())
         return
 
     topicprefix = "/".join(msg.topic.split("/", 2)[:2])
+    print(topicprefix)
     bridge_event_to_hass(client, topicprefix, data)
 
 
