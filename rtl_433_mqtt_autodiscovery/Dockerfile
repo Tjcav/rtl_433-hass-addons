@@ -1,7 +1,7 @@
 ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base-python:3.12-alpine3.19
 FROM ${BUILD_FROM} as builder
 
-ARG rtl433GitRevision=23.11
+ARG rtl433GitRevision=0.8.2.tjc4
 
 RUN wget https://raw.githubusercontent.com/Tjcav/rtl_433-hass-addons/rtl_433_mqtt_autodiscovery/${rtl433GitRevision}/rtl_433_mqtt_hass.py -O rtl_433_mqtt_hass.py
 
