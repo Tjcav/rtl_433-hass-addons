@@ -368,9 +368,11 @@ mappings = {
         "device_type": "binary_sensor",
         "object_suffix": "tamper",
         "config": {
+            "device_class": "safety",
             "force_update": "true",
             "payload_on": "1",
-            "payload_off": "0"
+            "payload_off": "0",
+            "entity_category": "diagnostic"
         }
     },
 
