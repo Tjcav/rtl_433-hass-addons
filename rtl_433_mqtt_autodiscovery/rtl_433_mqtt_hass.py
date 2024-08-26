@@ -176,7 +176,8 @@ mappings = {
         "config": {
             "device_class": "timestamp",
             "name": "Timestamp",
-            "icon": "mdi:clock-in"
+            "icon": "mdi:clock-in",
+            "entity_category": "diagnostic"
         }
     },
     "battery_ok": {
@@ -186,7 +187,8 @@ mappings = {
             "device_class": "battery",
             "name": "Battery",
             "unit_of_measurement": "%",
-            "value_template": "{{ float(value|int) * 99 + 1 }}"
+            "value_template": "{{ float(value|int) * 99 + 1 }}",
+            "entity_category": "diagnostic"
         }
     },
 
@@ -376,27 +378,15 @@ mappings = {
         }
     },
 
-    "contact_open": {
-        "device_type": "binary_sensor",
-        "object_suffix": "contact_open",
-        "config": {
-            "device_class": "safety",
-            "force_update": "true",
-            "payload_on": "1",
-            "payload_off": "0",
-            "entity_category": "diagnostic"
-        }
-    },
-
     "closed": {
         "device_type": "binary_sensor",
         "object_suffix": "closed",
         "config": {
-            "device_class": "opening",
+            "device_class": "window",
             "force_update": "true",
             "payload_on": "0",
             "payload_off": "1",
-            "entity_category": "diagnostic"
+            "entity_category": "sensors"
         }
     },
 
