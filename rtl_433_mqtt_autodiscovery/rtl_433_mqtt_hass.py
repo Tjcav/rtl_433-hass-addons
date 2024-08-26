@@ -382,11 +382,10 @@ mappings = {
         "device_type": "binary_sensor",
         "object_suffix": "closed",
         "config": {
-            "device_class": "opening",
+            "device_class": "window",
             "force_update": "true",
             "payload_on": "0",
-            "payload_off": "1",
-            "entity_category": "sensors"
+            "payload_off": "1"
         }
     },
 
