@@ -1,4 +1,4 @@
-## [0.8.2.tjc] - 2024-08-25
+## [0.8.2.tjc4] - 2024-08-25
 
 * Configure for DSC contact and set defaults
 
