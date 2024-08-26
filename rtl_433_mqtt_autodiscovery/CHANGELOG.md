@@ -1,3 +1,7 @@
+## [0.8.2.tjc] - 2024-08-25
+
+* Configure for DSC contact and set defaults
+
 ## [0.8.2] - 2024-06-23
 
 * Upgrade base images to support RTL-SDR V4 #181
